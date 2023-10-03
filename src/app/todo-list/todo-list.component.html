@@ -1,0 +1,43 @@
+<div class="container mt-4">
+    <div class="row justify-content-center"> <!-- Center the Todo App heading -->
+      <div class="col-md-6">
+        <h2 class="text-center">Todo App</h2>
+        <div class="form-group">
+          <div class="input-group">
+            <input [(ngModel)]="newTodoTitle" class="form-control custom-margin custom-input-width" placeholder="Description" />
+            <input [(ngModel)]="newTodoDate" type="date" class="form-control custom-margin" placeholder="Date" />
+            <div class="input-group-append">
+              <button (click)="addToDo()" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row mt-4 justify-content-center"> <!-- Center the "Please add something" message -->
+      <div class="col-md-6">
+        <ul class="list-group">
+          <ng-container *ngIf="todoList.length > 0; else emptyList">
+            <h4 class="text-center">Things to do</h4> <!-- Center the "Things to do" heading -->
+            <li class="list-group-item" *ngFor="let todo of todoList">
+              <div class="row">
+                <div class="col">
+                  {{ todo.title }}
+                </div>
+                <div class="col">
+                  {{ todo.date | date: 'dd.MM.yyyy' }}
+                </div>
+                <div class="col">
+                  <button (click)="DeleteTodo(todo.id)" class="btn btn-danger btn-sm float-right">Delete</button>
+                </div>
+              </div>
+            </li>
+          </ng-container>
+          <ng-template #emptyList>
+            <p class="text-center">Please add something</p> <!-- Center the "Please add something" text -->
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
